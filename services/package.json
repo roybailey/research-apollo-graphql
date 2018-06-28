@@ -1,0 +1,52 @@
+{
+  "name": "research-graphql-typescripti-services",
+  "version": "0.1.0",
+  "description": "Micro Service Emulation APIs (in Typescript!)",
+  "author": "Roy Bailey",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "npx jest --watchAll",
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/apiServices.ts"
+  },
+  "jest": {
+    "verbose": true,
+    "rootDir": "src",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "express": "^4.16.3",
+    "log4js": "^2.10.0",
+    "lokijs": "^1.5.5",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/log4js": "^2.3.5",
+    "@types/date-fns": "^2.6.0",
+    "@types/express": "^4.16.0",
+    "@types/jest": "^23.0.0",
+    "@types/lokijs": "^1.5.2",
+    "@types/node": "^10.1.2",
+    "@types/supertest": "^2.0.4",
+    "@types/uuid": "^3.4.3",
+    "jest": "^23.1.0",
+    "nodemon": "^1.17.5",
+    "supertest": "^3.1.0",
+    "ts-jest": "^22.4.6",
+    "ts-node": "^6.0.5",
+    "typescript": "^2.8.3"
+  }
+}
