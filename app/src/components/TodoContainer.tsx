@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
-import { TodoList } from './TodoList'
+import TodoForm from './TodoForm'
+import TodoList from './TodoList'
 
 
-export const TodoContainer = (props:React.Props<any>) => (
-  <Query
-    query={gql`
+const TodoListGQL = (props:React.Props<any>) => (
+  <Query query={gql`
       {
         allTodos {
             id
@@ -16,23 +16,41 @@ export const TodoContainer = (props:React.Props<any>) => (
             status
         }
       }
-    `}
-  >
+    `}>
     {({ loading, error, data }) => {
-      if (loading) {
-          return <p>Loading...</p>;
-      }
-      if (error) {
-          return (
-            <React.Fragment>
-              <p>Error :(</p>
-              <p>{error}</p>
-            </React.Fragment>
-          );
-      }
       return (
         <TodoList loading={loading} error={error} data={data} />
       );
     }}
   </Query>
+);
+
+
+const handleCreateTodo = (createTodo: (payload:any) => void) => (values:any) => {
+  console.log('Received values of form: ', values);
+  createTodo({ variables: { varTitle: values.title, varCompleted: values.completed === true } });
+}
+
+
+const TodoFormGQL = (props:React.Props<any>) => (
+  <Mutation mutation={gql`
+      mutation createTodo($varTitle:String!, $varCompleted:Boolean!) {
+        createTodo(content: $varTitle, isCompleted: $varCompleted) {
+          id
+          title
+          status
+        }
+      }
+    `}>{createTodo => (
+    <TodoForm onSubmit={handleCreateTodo(createTodo)}/>
+  )}
+  </Mutation>
+);
+
+
+export const TodoContainer = (props:React.Props<any>) => (
+    <div>
+      <TodoFormGQL />
+      <TodoListGQL />
+    </div>
 );

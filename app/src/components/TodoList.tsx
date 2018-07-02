@@ -47,3 +47,5 @@ export const TodoList = ({ loading, error, data }:Props) => {
     <Table rowSelection={rowSelection} columns={columns} dataSource={data.allTodos} />
   );
 };
+
+export default TodoList

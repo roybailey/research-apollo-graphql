@@ -21,6 +21,7 @@
     "apollo-link": "^1.2.2",
     "apollo-link-error": "^1.1.0",
     "apollo-link-http": "^1.5.4",
+    "apollo-link-ws": "^1.0.8",
     "connected-react-router": "^4.3.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
@@ -31,7 +32,9 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
+    "subscriptions-transport-ws": "^0.9.11"
   },
   "devDependencies": {
     "@types/antd": "^1.0.0",
@@ -45,6 +48,8 @@
     "@types/react-router-dom": "^4.2.7",
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
+    "@types/redux-form": "^7.3.1",
+    "@types/ws": "^5.1.2",
     "redux-devtools-extension": "^2.13.5",
     "typescript": "^2.9.2"
   }

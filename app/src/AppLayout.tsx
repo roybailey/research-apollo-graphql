@@ -3,6 +3,7 @@ import { Layout, Breadcrumb } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 import { MainMenu } from './components/MainMenu';
+import { AuditNotification } from './components/AuditNotification';
 
 import './AppLayout.css'
 
@@ -25,6 +26,7 @@ export const AppLayout = (props:React.Props<any>) => (
     </Content>
     <Footer style={{ textAlign: 'center' }}>
       Typescript React Apollo GraphQL ©2018 Created by Curious People 
+      <AuditNotification />
     </Footer>
   </Layout>
 );

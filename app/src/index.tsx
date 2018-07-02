@@ -17,6 +17,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { AppLayout } from './AppLayout';
 import { DinnerContainer } from './components/DinnerContainer';
 import { TodoContainer } from './components/TodoContainer';
+import { AuditContainer } from './components/AuditContainer';
 
 import initStore from './store'
 const history = createBrowserHistory()
@@ -42,13 +43,14 @@ const AppRoute = ({component: Component, ...rest}:any) => {
 
 
 ReactDOM.render(
-  <ApolloProvider client={initApolloClient('http://localhost:7777/graphql', store)}>
+  <ApolloProvider client={initApolloClient('http://localhost:7777/graphql', 'ws://localhost:7777/graphql', store)}>
     <Provider store={store}>
       <ConnectedRouter history={history}>
           <Switch>
             <AppRoute exact={true} path="/" component={Home} />
             <AppRoute path="/dinner" component={DinnerContainer} />
             <AppRoute path="/todo" component={TodoContainer} />
+            <AppRoute path="/audit" component={AuditContainer} />
           </Switch>
       </ConnectedRouter>
     </Provider>

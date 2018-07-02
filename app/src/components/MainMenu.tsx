@@ -37,6 +37,10 @@ export class MainMenu extends React.Component {
           <NavLink activeClassName="active" to="/todo"><Icon type="schedule" />Todo List</NavLink>
         </Menu.Item>
 
+        <Menu.Item key="audit">
+          <NavLink activeClassName="active" to="/audit"><Icon type="bars" />Audit</NavLink>
+        </Menu.Item>
+
         <SubMenu title={<span><Icon type="question-circle-o" />Helpful Links</span>}>
           <MenuItemGroup title="React">
             <Menu.Item key="setting:1">
