@@ -25,9 +25,15 @@ class InMemoryTodoStore implements ITodoStore {
         this.emitter = sink
     }
 
-    insert(todos:ITodo[]):ITodo[] {
+    insert(todoset:ITodoTemplate[]):ITodo[] {
         // console.log(JSON.stringify(todos));
-        let result = todos.map(it=>this.todos.insert(Object.assign({id: uuid()}, it))) as ITodo[]
+        let result = todoset.map(it=>this.todos.insert({
+            id: uuid().toString(),
+            title: it.title || '',
+            status: it.status || TodoStatus.NOT_STARTED,
+            steps: it.steps || [],
+            goal: it.goal || ''
+        })) as ITodo[]
         this.emitter.raise('todo', 'insert', '', result);
         // console.log(JSON.stringify(result));
         return result
