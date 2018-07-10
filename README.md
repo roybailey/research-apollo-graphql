@@ -23,19 +23,19 @@ Motivation: to familiarize myself with:
   * `npm start`
 
 
-## React Apollo Client Application
+#### React Apollo Client Application
 
 A fully operational React single page application using Apollo-Client for data fetching.
 
 * (DONE) Basic React Boilerplate, inc. router, global styling, webpack build
-* (todo) Dinner Page using apollo-client GraphQL query
-* (todo) Todo List using apollo-client GraphQL query
+* (DONE) Dinner Page using apollo-client GraphQL query
+* (DONE) Todo List using apollo-client GraphQL query
 * (todo) Todo Form using apollo-client GraphQL mutation
 * (todo) Todo Delete using apollo-client GraphQL mutation
 * (todo) Audit View using apollo-client GraphQL query with subscription
 
 
-## TypeScript GraphQL Server
+#### TypeScript GraphQL Server
 
 A fully operational GraphQL server using graphql-yoga.
 
@@ -47,7 +47,7 @@ A fully operational GraphQL server using graphql-yoga.
 * (DONE) Audit Subscriptions supported by REST call to extenal micro-service
 
 
-## TypeScript Micro-Service Simulators
+#### TypeScript Micro-Service Simulators
 
 A collection of micro-services simulators for various domains providing typical CRUD features over REST.
 
@@ -58,3 +58,92 @@ A collection of micro-services simulators for various domains providing typical 
 * (DONE) Audit CRUD supported by REST call to extenal micro-service
 * (DONE) Audit Events supported by REST call to extenal micro-service
 
+## GraphQL step through
+
+Bring up `graphql-playground` and point workspace to cloned source folder (it should pick up connection details)
+
+If not create a Workspace based on URL `http://localhost:7777/graphql`
+
+
+#### Start with the most basic hello GraphQL query
+
+```$json
+{
+  whatsForDinner
+}
+```
+
+
+#### Basic query which gets data from REST api 
+
+```$json
+{
+  allTodos {
+    id
+    title
+    status
+  }
+}
+```
+
+
+#### Basic mutation to create a new TODO record
+
+```$json
+mutation($varTitle: String!, $varCompleted:Boolean!) {
+  createTodo(content: $varTitle, isCompleted: $varCompleted) {
+    id
+    title
+    status
+  }
+}
+```
+
+```$json
+{
+  "varTitle": "Todo Created in Playground",
+  "varCompleted": false
+}
+```
+
+
+#### Basic mutation to update a TODO record
+
+```
+mutation($varID:ID!, $varTitle: String!, $varCompleted:Boolean!) {
+  updateTodo(id:$varID, content: $varTitle, isCompleted: $varCompleted) {
+    id
+    title
+    status
+  }
+}
+```
+
+```$json
+{
+  "varID": "<previously created todo id value>",
+  "varTitle": "Todo Updated in Playground",
+  "varCompleted": true
+}
+```
+
+
+#### Basic mutation to delete a TODO record
+
+```
+mutation($varID:ID!, $varTitle: String!, $varCompleted:Boolean!) {
+  updateTodo(id:$varID, content: $varTitle, isCompleted: $varCompleted) {
+    id
+    title
+    status
+  }
+}
+```
+
+```$json
+{
+  "varID": "<previously created todo id value>",
+  "varTitle": "Todo Updated in Playground",
+  "varCompleted": true
+}
+```

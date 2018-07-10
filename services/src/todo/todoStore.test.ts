@@ -1,6 +1,9 @@
 import { AuditSink, IAudit } from '../audit/auditType';
-import { ITodo, TodoStatus } from './todoType';
+import {ITodo, ITodoTemplate, TodoStatus} from './todoType';
 import { createTodoStore } from './todoStore';
+import arrayContaining = jasmine.arrayContaining;
+import objectContaining = jasmine.objectContaining;
+import {log} from "util";
 
 
 describe('todo store', () => {
@@ -13,9 +16,8 @@ describe('todo store', () => {
     }
     const todos = createTodoStore(new AuditSink(auditCapture));
 
-    const todosArray: ITodo[] = [{
+    const todosArray: ITodoTemplate[] = [{
         goal: 'Goal',
-        id: 'some-id',
         status: TodoStatus.NOT_STARTED,
         steps: [],
         title: 'Title'
@@ -25,8 +27,9 @@ describe('todo store', () => {
 
     it('created the todo', () => {
         const newTodo = todos.insert(todosArray)
-        expect(newTodo).toMatchObject(todosArray)
-        const sameTodo = todos.findOne({ id: todosArray[0].id })
+        //console.log(JSON.stringify(newTodo,null,2))
+        expect(newTodo).toEqual(arrayContaining([objectContaining(todosArray[0])]))
+        const sameTodo = todos.findOne({ id: newTodo[0].id })
         expect(newTodo[0]).toMatchObject(sameTodo)
         expect(audit).toHaveLength(1)
     });

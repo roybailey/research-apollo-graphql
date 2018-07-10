@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Table } from 'antd';
+import Button from "antd/lib/button/button"
 
 const columns = [{
   title: 'ID',
@@ -25,6 +26,15 @@ const rowSelection = {
   }),
 };
 
+//
+const actionRowDelete = () => {
+    console.log(`rows to delete`);
+};
+
+const actionRowCompleted = () => {
+    console.log(`rows to complete`);
+};
+
 interface Props {
   loading:any
   error:any
@@ -44,8 +54,16 @@ export const TodoList = ({ loading, error, data }:Props) => {
       );
   }
   return (
-    <Table rowSelection={rowSelection} columns={columns} dataSource={data.allTodos} />
+      <div>
+          <div className="table-operations">
+              <Button onClick={actionRowCompleted}>Mark Completed</Button>
+              <Button onClick={actionRowDelete}>Delete</Button>
+          </div>
+          <Table rowSelection={rowSelection} columns={columns} dataSource={
+                data.allTodos.map((it:any)=>Object.assign({key : it.id}, it))
+              } />
+      </div>
   );
-};
+}
 
 export default TodoList

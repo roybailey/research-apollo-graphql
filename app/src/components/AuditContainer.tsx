@@ -1,7 +1,7 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { Subscription } from "react-apollo";
-import gql from "graphql-tag";
+import { Subscription } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import AuditList from './AuditList'
 
