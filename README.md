@@ -31,8 +31,10 @@ A fully operational React single page application using Apollo-Client for data f
 * (DONE) Dinner Page using apollo-client GraphQL query
 * (DONE) Todo List using apollo-client GraphQL query
 * (todo) Todo Form using apollo-client GraphQL mutation
+* (todo) Todo Update using apollo-client GraphQL mutation on selection
 * (todo) Todo Delete using apollo-client GraphQL mutation
 * (todo) Audit View using apollo-client GraphQL query with subscription
+* (todo) User Page using apollo-client GraphQL query
 
 
 #### TypeScript GraphQL Server
@@ -45,6 +47,7 @@ A fully operational GraphQL server using graphql-yoga.
 * (DONE) Audit Query supported by REST call to extenal micro-service
 * (DONE) Audit Mutations supported by REST call to extenal micro-service
 * (DONE) Audit Subscriptions supported by REST call to extenal micro-service
+* (todo) User page using single GraphQL query to aggregate data from multiple micro-services
 
 
 #### TypeScript Micro-Service Simulators
@@ -57,6 +60,9 @@ A collection of micro-services simulators for various domains providing typical 
 * (DONE) Audit Query supported by REST call to extenal micro-service
 * (DONE) Audit CRUD supported by REST call to extenal micro-service
 * (DONE) Audit Events supported by REST call to extenal micro-service
+* (todo) Basic Product micro-service and sample data
+* (todo) Basic User micro-service and sample data
+* (todo) Basic Portfolio micro-service and sample data
 
 ## GraphQL step through
 

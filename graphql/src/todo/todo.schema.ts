@@ -55,6 +55,7 @@ export const resolvers:IResolvers = {
     },
 
     updateTodo: (_:any, { id, content, isCompleted }:any) => {
+        console.log(`updateTodo(${content}, ${isCompleted})`)
       const updateTodo:ITodo = {
         id: id,
         title: content,
@@ -69,8 +70,8 @@ export const resolvers:IResolvers = {
           method: 'POST',
         })
         .then(res => res.json())
+        .then(result => result)
         .catch(error => console.error('Error:', error))
-        .then(result => result);
     },
 
     deleteTodo: (_:any, { id }:any) => {
