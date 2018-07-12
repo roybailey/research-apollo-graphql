@@ -1,0 +1,22 @@
+import {TransactionType, createTransactionStore, ITransaction} from './transactionStore';
+import initialTransactionData from './transactionStore.data'
+
+
+describe('transaction store', () => {
+
+    const transactionStore = createTransactionStore();
+
+    const testData: ITransaction[] = initialTransactionData;
+
+    const initialCount = transactionStore.findAll().length
+
+    it('should create test transactions', () => {
+        const transactions = transactionStore.createTransactions(testData)
+        expect(transactions).toMatchObject(testData);
+        const sameUser = transactionStore.findOne({ id: transactions[0].id })
+        expect(transactions[0]).toMatchObject(sameUser);
+    });
+
+    const finalCount = transactionStore.findAll().length
+    expect(initialCount).toEqual(finalCount)
+});
