@@ -26,7 +26,7 @@ interface ITodoListProps {
 }
 
 
-class TodoList extends React.Component<ITodoListProps> {
+export class TodoList extends React.Component<ITodoListProps> {
 
     public state = {
         selectedRowKeys: []
@@ -80,11 +80,9 @@ class TodoList extends React.Component<ITodoListProps> {
         return (
             <div>
                 <div className="table-operations" style={{padding: '10px'}}>
-                    <Button type="primary" shape="circle" icon="download" onClick={() => this.props.refetch()}></Button>
-                    <Button.Group size={"large"}>
-                        <Button type="primary" disabled={!hasSelected} onClick={this.actionRowCompleted}>Mark Completed</Button>
-                        <Button type="danger" disabled={!hasSelected} onClick={this.actionRowDelete}>Delete</Button>
-                    </Button.Group>
+                    <Button type="primary" shape="circle" icon="download" onClick={() => this.props.refetch()} />
+                    <Button type="primary" disabled={!hasSelected} onClick={this.actionRowCompleted}>Mark Completed</Button>
+                    <Button type="danger" disabled={!hasSelected} onClick={this.actionRowDelete}>Delete</Button>
                     <span style={{ marginLeft: 8 }}>
                         {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
                     </span>
@@ -99,5 +97,3 @@ class TodoList extends React.Component<ITodoListProps> {
         );
     }
 }
-
-export default TodoList

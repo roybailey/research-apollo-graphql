@@ -8,7 +8,7 @@ describe('transaction store', () => {
 
     const testData: ITransaction[] = initialTransactionData;
 
-    const initialCount = transactionStore.findAll().length
+    const initialCount = transactionStore.findAll({}).length
 
     it('should create test transactions', () => {
         const transactions = transactionStore.createTransactions(testData)
@@ -17,6 +17,11 @@ describe('transaction store', () => {
         expect(transactions[0]).toMatchObject(sameUser);
     });
 
-    const finalCount = transactionStore.findAll().length
+    it('should find transactions for specific account', () => {
+        const transactions = transactionStore.findAll({ accountId: testData[5].accountId })
+        expect(transactions.length).toEqual(3);
+    });
+
+    const finalCount = transactionStore.findAll({}).length
     expect(initialCount).toEqual(finalCount)
 });

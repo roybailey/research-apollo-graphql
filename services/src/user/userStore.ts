@@ -1,5 +1,6 @@
 import loki from 'lokijs';
-import { v1 as uuid } from 'uuid'
+import sequence from '../identity'
+const uuid = sequence('USER')
 
 
 export enum UserRole {

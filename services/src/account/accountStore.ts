@@ -1,5 +1,6 @@
 import loki from 'lokijs';
-import { v1 as uuid } from 'uuid'
+import sequence from '../identity'
+const uuid = sequence('ACC')
 
 
 export enum AccountType {
@@ -30,7 +31,7 @@ export interface IAccountStore {
     find(id:string):IAccount
     findByUserId(userId:string):IAccount
     findOne(query:any):IAccount
-    findAll():IAccount[]
+    findAll(query:any):IAccount[]
     updateBalance(userId:string, number:string, bankCode:string, amount: number):IAccount
 }
 
@@ -50,10 +51,6 @@ class InMemoryAccountStore implements IAccountStore {
             balance: account.balance || 0
         })) as IAccount[]
     }
-    
-    findAll():IAccount[] {
-        return this.accounts.find()
-    }
 
     find(id:string):IAccount {
         return this.findOne({ id })
@@ -61,6 +58,11 @@ class InMemoryAccountStore implements IAccountStore {
     
     findOne(query:any):IAccount {
         let found = this.accounts.findOne(query) as IAccount;
+        return found;
+    }
+
+    findAll(query:any):IAccount[] {
+        let found = this.accounts.find(query) as IAccount[];
         return found;
     }
 

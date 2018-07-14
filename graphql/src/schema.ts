@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 const { mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 
 import { typeDefs as dinnerTypes, resolvers as dinnerResolvers } from "./dinner";
@@ -11,4 +13,6 @@ const resolversArray = [dinnerResolvers, todoResolvers, auditResolvers, userReso
 export const resolvers = mergeResolvers(resolversArray);
 export const typeDefs = mergeTypes(typesArray);
 
+
 console.log(JSON.stringify(typeDefs))
+//fs.writeFileSync('graphql.schema.json', typeDefs)

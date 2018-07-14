@@ -8,7 +8,7 @@ describe('account store', () => {
 
     const testData: IAccountCreation[] = initialAccountData;
 
-    const initialCount = accountStore.findAll().length
+    const initialCount = accountStore.findAll({}).length
 
     it('should create test Accounts', () => {
         const newAccounts = accountStore.createAccounts(testData)
@@ -23,6 +23,6 @@ describe('account store', () => {
         expect(updatedUser.balance).toEqual(10.75)
     });
 
-    const finalCount = accountStore.findAll().length
+    const finalCount = accountStore.findAll({}).length
     expect(initialCount).toEqual(finalCount)
 });

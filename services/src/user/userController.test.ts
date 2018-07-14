@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { userApi } from '../apiServices'
+import {accountApi, userApi} from '../apiServices'
 
 
 describe('test user api', () => {
@@ -15,4 +15,12 @@ describe('test user api', () => {
         id = actual.id
     });
 
+    it('should GET user by id', async () => {
+        const response = await request(userApi).get(`/user/${id}`);
+        expect(response.status).toBe(200);
+        let actual = response.body
+        expect(actual.email).toEqual('anna@acme.com')
+        expect(actual.id).not.toBeNull()
+        id = actual.id
+    });
 })

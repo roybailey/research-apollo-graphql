@@ -1,7 +1,8 @@
 import loki from 'lokijs'
-import { v1 as uuid } from 'uuid'
 import { IAudit, AuditSink } from '../audit/auditType'
 import { ITodo, ITodoStep, ITodoTemplate, TodoStatus } from './todoType'
+import sequence from '../identity'
+const uuid = sequence('TODO')
 
 
 export interface ITodoStore {

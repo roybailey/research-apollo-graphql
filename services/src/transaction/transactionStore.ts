@@ -1,5 +1,10 @@
 import loki from 'lokijs';
-import { v1 as uuid } from 'uuid'
+
+import sequence from '../identity'
+const uuid = sequence('TX')
+
+import log4js from '../logger'
+const logger = log4js.getLogger('transactionStore')
 
 
 export enum TransactionType {
@@ -20,7 +25,7 @@ export interface ITransactionStore {
     createTransactions(transactions:ITransaction[]):ITransaction[]
     find(id:string):ITransaction
     findOne(query:any):ITransaction
-    findAll():ITransaction[]
+    findAll(query:any):ITransaction[]
 }
 
 
@@ -30,19 +35,17 @@ class InMemoryTransactionStore implements ITransactionStore {
     transactions = this.db.addCollection('Transactions') as Collection<ITransaction>;
 
     createTransactions(transactions:ITransaction[]):ITransaction[] {
-        return transactions.map(transaction => this.transactions.insert({
+        let tx = transactions.map(transaction => this.transactions.insert({
             id: uuid(),
             accountId: transaction.accountId,
             transactionType: transaction.transactionType,
             amount: transaction.amount,
             date: transaction.date
         })) as ITransaction[]
+        logger.debug(`Inserted Transactions`, tx)
+        return tx;
     }
     
-    findAll():ITransaction[] {
-        return this.transactions.find()
-    }
-
     find(id:string):ITransaction {
         return this.findOne({ id })
     }
@@ -51,6 +54,12 @@ class InMemoryTransactionStore implements ITransactionStore {
         let found = this.transactions.findOne(query) as ITransaction;
         return found;
     }
+
+    findAll(query:any):ITransaction[] {
+        logger.debug(`findAll`, query)
+        return this.transactions.find(query) as ITransaction[]
+    }
+
 }
 
 
