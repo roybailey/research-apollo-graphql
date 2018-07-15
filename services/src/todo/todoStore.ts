@@ -35,7 +35,8 @@ class InMemoryTodoStore implements ITodoStore {
             steps: it.steps || [],
             goal: it.goal || ''
         })) as ITodo[]
-        this.emitter.raise('todo', 'insert', '', result);
+        result.forEach(data =>
+            this.emitter.raise('todo', 'insert', data.id || '', result))
         // console.log(JSON.stringify(result));
         return result
     }

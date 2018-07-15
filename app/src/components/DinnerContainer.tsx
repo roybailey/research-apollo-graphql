@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import {Button} from "antd"
 
 
 export const DinnerContainer = (props:React.Props<any>) => (
@@ -12,7 +13,7 @@ export const DinnerContainer = (props:React.Props<any>) => (
       }
     `}
   >
-    {({ loading, error, data }) => {
+    {({ loading, error, data, refetch }) => {
       if (loading) {
           return <p>Loading...</p>;
       }
@@ -25,7 +26,10 @@ export const DinnerContainer = (props:React.Props<any>) => (
           );
       }
       return (
-        <h1>{data.whatsForDinner}</h1>
+        <div>
+          <h1>{data.whatsForDinner}</h1>
+          <Button onClick={() => refetch()}>Refetch!</Button>
+        </div>
       );
     }}
   </Query>

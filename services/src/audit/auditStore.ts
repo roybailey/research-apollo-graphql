@@ -34,16 +34,20 @@ class InMemoryAuditStore implements IAuditStore {
         logger.debug(`insert audit results\n`, results)
         return results
     }
-    
+
+    orderBy(e1:IAudit,e2:IAudit) {
+        return e1.timestamp.getTime()-e2.timestamp.getTime()
+    }
+
     findAll():IAudit[] {
-        return this.auditData.find()
+        return this.auditData.find().sort(this.orderBy)
     }
 
     findSince(timestamp:Date):IAudit[] {
         logger.debug(`find audit by timestamp `+timestamp)
         let results = this.auditData.find({ 'timestamp': { '$gt': timestamp }})
         logger.debug(`find audit by timestamp results\n`, results)
-        return results
+        return results.sort(this.orderBy)
     }
 
     find(id:string):IAudit {
