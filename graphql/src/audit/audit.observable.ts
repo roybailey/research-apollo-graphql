@@ -23,7 +23,7 @@ export class AuditConsumer {
         .then(res => res.json())
         .then(data => this.fireEvent(data))
         .catch(error => logger.error(`failed to fetch latest audit events`, error))
-      }, 10000)
+      }, 5000)
   }
 
   subscribe(subscriber:Observer<IAudit[]>) {

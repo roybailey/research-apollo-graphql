@@ -1,68 +1,53 @@
 # Apollo GraphQL React Project
 
-Motivation: to familiarize myself with:
+#### Motivation
+
+_to familiarize myself with..._
     
-* static typing using Typescript
-* apollo-client, as a means of handling requests to a GraphQL backend for Front End service
-* graphql-yoga, as a GraphQL server implementation backed by REST micro-services
+* Static typing using **Typescript**
+* **`apollo-client`**, as a means of handling requests to a GraphQL backend for Front End service
+* **`graphql-yoga`**, as a GraphQL server implementation backed by REST micro-services
+
+...and is not considered production quality code.
+
+#### Project Structure
+
+This is a mono-repo with three distinct projects.
+
+1. `services` contains a typescript **Micro-Services Simulator** 
+2. `graphql` contains a **GraphQL Server** written in typescript using `graphql-yoga`
+3. `app` contains a **React/Apollo UI Application** using typescript and Ant Design components 
+
+The services project creates a number of simple micro-services to represent some sample business data domains.
+The purpose is to provide the GraphQL server with numerous isolated REST APIs where
+demonstrating querying, mutations (CRUD operations) and data joining across domains into a single schema. 
 
 
 ## Getting Started
 
-* Start the micro-service simulator
+#### 1. Micro-Service Simulator
+
   * `cd services`
-  * `npm install`
-  * `npm start`
-* Start the GraphQL server
+  * `yarn`
+  * `yarn start`
+
+`yarn test` is setup as _unit_ test, and therefore needs nothing to be running to verify it works.
+
+#### 2. GraphQL Server
+
   * `cd graphql`
-  * `npm install`
-  * `npm start`
-* Start the React Application
+  * `yarn`
+  * `yarn start`
+
+`yarn test` is setup as _integration_ test,
+and therefore needs both the services and graphql server to be running for tests to pass.
+  
+#### 3. React/Apollo Application
+
   * `cd app`
-  * `npm install`
-  * `npm start`
+  * `yarn`
+  * `yarn start`
 
-
-#### React Apollo Client Application
-
-A fully operational React single page application using Apollo-Client for data fetching.
-
-* (DONE) Basic React Boilerplate, inc. router, global styling, webpack build
-* (DONE) Dinner Page using apollo-client GraphQL query
-* (DONE) Todo List using apollo-client GraphQL query
-* (DONE) Todo Form using apollo-client GraphQL mutation
-* (DONE) Todo Update using apollo-client GraphQL mutation on selection
-* (DONE) Todo Delete using apollo-client GraphQL mutation
-* (DONE) Audit View using apollo-client GraphQL query with subscription
-* (todo) User Page using apollo-client GraphQL query with nested data
-
-
-#### TypeScript GraphQL Server
-
-A fully operational GraphQL server using graphql-yoga.
-
-* (DONE) Basic Server Boilerplate, inc. simple query for in-memory data
-* (DONE) Todo Query supported by REST call to extenal micro-service
-* (DONE) Todo Mutations supported by REST call to extenal micro-service
-* (DONE) Audit Query supported by REST call to extenal micro-service
-* (DONE) Audit Mutations supported by REST call to extenal micro-service
-* (DONE) Audit Subscriptions supported by REST call to extenal micro-service
-* (DONE) User query to aggregate data from multiple micro-services
-
-
-#### TypeScript Micro-Service Simulators
-
-A collection of micro-services simulators for various domains providing typical CRUD features over REST.
-
-* (DONE) Basic Micro-Service Boilerplate, inc. in-memory data storage
-* (DONE) Todo Query supported by REST call to extenal micro-service
-* (DONE) Todo CRUD supported by REST call to extenal micro-service
-* (DONE) Audit Query supported by REST call to extenal micro-service
-* (DONE) Audit CRUD supported by REST call to extenal micro-service
-* (DONE) Audit Events supported by REST call to extenal micro-service
-* (DONE) Basic User micro-service and sample data
-* (DONE) Basic Account micro-service and sample data
-* (DONE) Basic Transaction micro-service and sample data
 
 ## GraphQL step through
 
