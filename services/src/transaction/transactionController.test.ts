@@ -30,7 +30,6 @@ describe('test account api', () => {
         const response = await request(transactionApi).get(`/account-transaction/${record.accountId}`);
         expect(response.status).toBe(200);
         let actual = response.body
-        console.log(JSON.stringify(actual,null,2))
 
         expect(actual.length).toEqual(3)
         expect(actual[0].transactionType).toEqual(TransactionType.CREDIT)

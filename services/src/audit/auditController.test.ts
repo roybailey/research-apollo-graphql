@@ -1,4 +1,4 @@
-import { addMinutes, addSeconds } from 'date-fns'
+import {addMinutes, addSeconds, subMinutes} from 'date-fns'
 import request from 'supertest'
 
 import { IAudit } from './auditType'
@@ -10,21 +10,21 @@ describe('test audit api', () => {
     const testData:IAudit[] = [{
         namespace: 'test',
         event: 'insert',
-        type: 'one',
+        type: 'controller-test-one',
         timestamp: addMinutes(new Date(), -120),
         payload: JSON.stringify({ aaa: '111', bbb: '222' })
     },
     {
         namespace: 'test',
         event: 'insert',
-        type: 'two',
+        type: 'controller-test-two',
         timestamp: addMinutes(new Date(), -60),
         payload: JSON.stringify({ aaa: '111', bbb: '222' })
     },
     {
         namespace: 'test',
         event: 'insert',
-        type: 'three',
+        type: 'controller-test-three',
         timestamp: new Date(),
         payload: JSON.stringify({ aaa: '111', bbb: '222' })
     }];
@@ -61,7 +61,17 @@ describe('test audit api', () => {
         const response = await request(auditApi).get(`/audit/since/${addMinutes(testData[1].timestamp,1)}`);
         expect(response.status).toBe(200);
         let actual = response.body
-        expect(actual.length).toEqual(2)
+        expect(actual.length).toBeGreaterThanOrEqual(2)
+        let actualTestEvents = actual.filter((evt:IAudit) => evt.type.startsWith('controller-test-'))
+        expect(actualTestEvents.length).toEqual(1)
     });
 
+    it('should GET latest audit events by timestamp', async () => {
+        const response = await request(auditApi).get(`/audit/since/${subMinutes(testData[1].timestamp,1)}`);
+        expect(response.status).toBe(200);
+        let actual = response.body
+        expect(actual.length).toBeGreaterThanOrEqual(2)
+        let actualTestEvents = actual.filter((evt:IAudit) => evt.type.startsWith('controller-test-'))
+        expect(actualTestEvents.length).toEqual(2)
+    });
 })
