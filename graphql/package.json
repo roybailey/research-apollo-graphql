@@ -27,24 +27,25 @@
     ]
   },
   "dependencies": {
-    "@types/debug": "^0.0.30",
-    "debug": "^3.1.0",
-    "graphql-yoga": "^1.14.3",
-    "log4js": "^2.10.0",
+    "debug": "^4.3.1",
+    "graphql-yoga": "^0.8.5",
+    "log4js": "^6.3.0",
     "merge-graphql-schemas": "^1.5.1",
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.1.1",
+    "@types/debug": "^4.1.5",
+    "@types/graphql": "^14.5.0",
+    "@types/jest": "^26.0.20",
     "@types/log4js": "^2.3.5",
-    "@types/node": "^10.1.2",
-    "@types/node-fetch": "^2.1.1",
-    "@types/supertest": "^2.0.4",
-    "jest": "^23.1.0",
-    "nodemon": "^1.17.5",
-    "supertest": "^3.1.0",
-    "ts-jest": "^22.4.6",
-    "ts-node": "^6.0.5",
-    "typescript": "^2.8.3"
+    "@types/node": "^14.14.34",
+    "@types/node-fetch": "^2.5.8",
+    "@types/supertest": "^2.0.10",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
   }
 }
